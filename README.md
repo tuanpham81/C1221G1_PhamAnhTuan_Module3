@@ -1,3 +1,0 @@
-# C1221G1_PhamAnhTuan_Module3
-# tuanpham81-C1221G1_PhamAnhTuan_Module3
-# C1221G1_PhamAnhTuan_Module3
