@@ -29,10 +29,15 @@ check(credit >=1),
 
 create table `quan_ly_sinh_vien`.`mark`(
 mark_id int auto_increment not null primary key,
-sub_id int not null unique,
-student_id int not null unique,
+sub_id int not null,
+student_id int not null,
 mark float default 0,
 check(mark between 0 and 100),
+-- exam_times tinyint default 1,
 foreign key (sub_id) references subject(sub_id),
 foreign key (student_id) references student(student_id)
 );
+alter table `mark` add `exam_times` tinyint default 1; 
+-- alter table `mark`
+-- modify column `sub_id` int not null;
+-- drop database quan_ly_sinh_vien;
