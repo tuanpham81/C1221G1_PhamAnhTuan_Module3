@@ -29,7 +29,6 @@ where `order`.customer_id is null;
 -- (giá một hóa đơn được tính bằng tổng giá bán của từng loại mặt hàng xuất hiện trong hóa đơn.
 -- Giá bán của từng loại được tính = odQTY*pPrice)
 select `order_detail`.order_id, `order`.order_date, sum(order_detail.order_quantity * product.product_price)
-from customer join `order` on customer.customer_id = `order`.customer_id
-join order_detail on `order`.order_id = order_detail.order_id
+from `order` join order_detail on `order`.order_id = order_detail.order_id
 join product on order_detail.product_id = product.product_id
 group by order_detail.order_id;
