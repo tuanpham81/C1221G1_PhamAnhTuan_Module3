@@ -225,3 +225,19 @@ left join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_d
 left join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
 group by khach_hang.ma_khach_hang;
 
+-- yêu cầu 6
+select dich_vu.ma_dich_vu, dich_vu.ten_dich_vu,dich_vu.dien_tich, dich_vu.chi_phi_thue, loai_dich_vu.ten_loai_dich_vu
+from dich_vu
+left join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
+left join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
+where dich_vu.ma_dich_vu not in (select hop_dong.ma_dich_vu from dich_vu where hop_dong.ngay_lam_hop_dong between '2021-01-01' and '2021-03-31')
+group by dich_vu.ten_dich_vu;
+
+-- yêu cầu 7
+select dich_vu.ma_dich_vu, dich_vu.ten_dich_vu, dich_vu.dien_tich, dich_vu.so_nguoi_toi_da, dich_vu.chi_phi_thue, loai_dich_vu.ten_loai_dich_vu, hop_dong.ngay_lam_hop_dong
+from dich_vu
+join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
+join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
+where year(hop_dong.ngay_lam_hop_dong) != 2021 and year(hop_dong.ngay_lam_hop_dong) = 2020
+-- group by dich_vu.ten_dich_vu
+
