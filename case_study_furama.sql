@@ -238,6 +238,141 @@ select dich_vu.ma_dich_vu, dich_vu.ten_dich_vu, dich_vu.dien_tich, dich_vu.so_ng
 from dich_vu
 join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
 join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
-where year(hop_dong.ngay_lam_hop_dong) != 2021 and year(hop_dong.ngay_lam_hop_dong) = 2020
--- group by dich_vu.ten_dich_vu
+where (hop_dong.ngay_lam_hop_dong between '2020-1-1' and '2020-12-31')
+group by dich_vu.ma_dich_vu
+having dich_vu.ma_dich_vu
+not in (select dich_vu.ma_dich_vu
+from dich_vu join hop_dong on dich_vu.ma_dich_vu= hop_dong.ma_dich_vu
+where (hop_dong.ngay_lam_hop_dong between '2021-1-1' and '2021-12-31'));
 
+-- yêu cầu 8
+-- cách 1:
+select khach_hang.ho_ten
+from khach_hang;
+-- cách 2:
+select distinct khach_hang.ho_ten
+from khach_hang;
+-- cách 3:
+
+-- yêu cầu 9:
+select ngay_lam_hop_dong, count(ma_khach_hang) as 'so_lan_dat'
+from hop_dong
+where year(ngay_lam_hop_dong) = 2021
+group by month(ngay_lam_hop_dong);
+
+-- yêu cầu 10
+select hop_dong.ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, sum(hop_dong_chi_tiet.so_luong) as so_luong_dich_vu_di_kem
+from hop_dong join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+group by hop_dong.ma_hop_dong;
+
+-- yêu cầu 11
+select khach_hang.ho_ten, loai_khach.ten_loai_khach, khach_hang.dia_chi, dich_vu_di_kem.ten_dich_vu_di_kem
+from khach_hang join loai_khach on khach_hang.ma_loai_khach= loai_khach.ma_loai_khach
+join hop_dong on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+where loai_khach.ten_loai_khach = 'Diamond' and khach_hang.dia_chi regexp 'Vinh|Quảng Ngãi';
+
+-- yêu cầu 12 -- sai
+select hop_dong.ma_hop_dong, nhan_vien.ho_ten, khach_hang.ho_ten, khach_hang.so_dien_thoai, ten_dich_vu, sum(hop_dong_chi_tiet.so_luong) as so_luong_dich_vu_di_kem, tien_dat_coc 
+from hop_dong join khach_hang on hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
+join nhan_vien on hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
+join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+where hop_dong.ngay_lam_hop_dong between '2020-10-01' and '2020-12-31'
+group by hop_dong.ma_hop_dong;
+having dich_vu.ma_dich_vu
+not in (select dich_vu.ma_dich_vu
+from dich_vu join hop_dong on dich_vu.ma_dich_vu= hop_dong.ma_dich_vu
+where (hop_dong.ngay_lam_hop_dong between '2021-01-01' and '2021-06-30'))
+;
+
+-- yêu cầu 13 -- sai
+select dich_vu_di_kem.ma_dich_vu_di_kem, ten_dich_vu_di_kem, sum(hop_dong_chi_tiet.so_luong) as 'so_luong_dat'
+from hop_dong_chi_tiet join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+group by ten_dich_vu_di_kem
+having so_luong_dat >= all (select so_luong from hop_dong_chi_tiet);
+
+-- yêu cầu 14
+select hop_dong.ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, count(hop_dong_chi_tiet.ma_dich_vu_di_kem) as so_lan_su_dung
+from hop_dong join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
+join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+group by ten_dich_vu_di_kem
+having so_lan_su_dung = 1;
+
+-- yêu cầu 15
+select nhan_vien.ma_nhan_vien, nhan_vien.ho_ten, trinh_do.teb_trinh_do, ten_bo_phan, nhan_vien.so_dien_thoai, nhan_vien.dia_chi, count(hop_dong.ma_nhan_vien)
+from nhan_vien join trinh_do on nhan_vien.ma_trinh_do = trinh_do.ma_trinh_do
+join bo_phan on nhan_vien.ma_bo_phan = bo_phan.ma_bo_phan
+join hop_dong on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+group by ma_nhan_vien
+having count(hop_dong.ma_nhan_vien) <=3;
+
+-- yêu cầu 16
+-- c1:
+set sql_safe_updates = 0;
+delete from nhan_vien 
+where ma_nhan_vien not in 
+(select nhan_vien.ma_nhan_vien 
+from (select * from nhan_vien) as `all_nhan_vien` left join hop_dong on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+-- That is, if you're doing an UPDATE/INSERT/DELETE on a table,
+-- you can't reference that table in an inner query (you can however reference a field from that outer table...)
+where year(hop_dong.ngay_lam_hop_dong) between 2019 and 2021);
+set sql_safe_updates = 1;
+
+-- c2:
+set sql_safe_updates=0;
+ delete from nhan_vien
+ where nhan_vien.ma_nhan_vien not in (
+ select distinct hop_dong.ma_nhan_vien from hop_dong
+ where (year(hop_dong.ngay_lam_hop_dong) between '2019' and '2021')
+ );
+ set sql_safe_updates=1;
+
+-- yêu cầu 17
+create view `vip_customer_view` as
+select khach_hang.ma_khach_hang, loai_khach.ma_loai_khach, khach_hang.ho_ten, loai_khach.ten_loai_khach, dich_vu.chi_phi_thue + (hop_dong_chi_tiet.so_luong * dich_vu_di_kem.gia) as `tong_tien`
+from khach_hang 
+left join loai_khach on khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
+left join hop_dong on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+left join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+left join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+left join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+group by khach_hang.ma_khach_hang
+having tong_tien > 10000000 and ten_loai_khach = 'Platinium';
+drop view vip_customer_view;
+set sql_safe_updates = 0;
+update khach_hang 
+set khach_hang.ma_loai_khach = 1 where khach_hang.ma_khach_hang in (select ma_khach_hang from `vip_customer_view`);
+set sql_safe_updates = 1;
+
+-- yêu cầu 18
+set sql_safe_updates=0;
+set foreign_key_checks = 0;
+ delete from khach_hang
+ where khach_hang.ma_khach_hang in (
+ select distinct hop_dong.ma_khach_hang from hop_dong
+ where (year(hop_dong.ngay_lam_hop_dong) < '2021'));
+ set sql_safe_updates=1;
+ set foreign_key_checks = 1;
+
+-- yêu cầu 19
+create view `19_view` as
+select dich_vu_di_kem.ma_dich_vu_di_kem
+from hop_dong_chi_tiet join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+join hop_dong on hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
+where year(ngay_lam_hop_dong) = 2020
+group by ten_dich_vu_di_kem
+having sum(hop_dong_chi_tiet.so_luong) > 10;
+select * from `19_view`;
+
+set sql_safe_updates = 0;
+update dich_vu_di_kem 
+set gia = gia*2 where ma_dich_vu_di_kem = (select ma_dich_vu_di_kem from `19_view`);
+set sql_safe_updates = 1;
+
+-- yêu cầu 21
+create view v_nhan_vien as
+select 
