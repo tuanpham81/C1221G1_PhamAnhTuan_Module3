@@ -1,0 +1,17 @@
+#mucluc {
+    float: left;
+    padding-left: 50px;
+    position: fixed;
+    font-size: large;
+}
+#noidung {
+    float: right;
+    width: 800px;
+    padding-right: 80px;
+    text-align: justify;
+    font-size: larger;
+}
+
+body {
+    background-image: url("https://mrvivu.com/wp-content/uploads/2021/01/nha-gia-kim-sach-1536x1075.jpg");
+}

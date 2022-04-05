@@ -65,10 +65,10 @@ ngay_ket_thuc datetime not null,
 tien_dat_coc double not null,
 ma_nhan_vien int not null,
 ma_khach_hang int not null,
--- ma_dich_vu int not null,
+ma_dich_vu int not null,
 foreign key (ma_nhan_vien) references `nhan_vien`(ma_nhan_vien),
-foreign key (ma_khach_hang) references `khach_hang`(ma_khach_hang)
--- foreign key (ma_dich_vu) references `dich_vu`(ma_dich_vu)
+foreign key (ma_khach_hang) references `khach_hang`(ma_khach_hang),
+foreign key (ma_dich_vu) references `dich_vu`(ma_dich_vu)
 );
 
 create table `hop_dong_chi_tiet`(
@@ -273,25 +273,25 @@ join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
 join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
 where loai_khach.ten_loai_khach = 'Diamond' and khach_hang.dia_chi regexp 'Vinh|Quảng Ngãi';
 
--- yêu cầu 12 -- sai
+-- yêu cầu 12
 select hop_dong.ma_hop_dong, nhan_vien.ho_ten, khach_hang.ho_ten, khach_hang.so_dien_thoai, ten_dich_vu, sum(hop_dong_chi_tiet.so_luong) as so_luong_dich_vu_di_kem, tien_dat_coc 
-from hop_dong join khach_hang on hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
-join nhan_vien on hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
-join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+from hop_dong left join khach_hang on hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
+left join nhan_vien on hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
+left join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+left join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
 where hop_dong.ngay_lam_hop_dong between '2020-10-01' and '2020-12-31'
-group by hop_dong.ma_hop_dong;
-having dich_vu.ma_dich_vu
-not in (select dich_vu.ma_dich_vu
+group by hop_dong.ma_hop_dong
+having dich_vu.ten_dich_vu
+not in (select dich_vu.ten_dich_vu
 from dich_vu join hop_dong on dich_vu.ma_dich_vu= hop_dong.ma_dich_vu
 where (hop_dong.ngay_lam_hop_dong between '2021-01-01' and '2021-06-30'))
 ;
 
--- yêu cầu 13 -- sai
+-- yêu cầu 13
 select dich_vu_di_kem.ma_dich_vu_di_kem, ten_dich_vu_di_kem, sum(hop_dong_chi_tiet.so_luong) as 'so_luong_dat'
 from hop_dong_chi_tiet join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
 group by ten_dich_vu_di_kem
-having so_luong_dat >= all (select so_luong from hop_dong_chi_tiet);
+having so_luong_dat >= all(select sum(hop_dong_chi_tiet.so_luong) from hop_dong_chi_tiet group by ma_dich_vu_di_kem);
 
 -- yêu cầu 14
 select hop_dong.ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, count(hop_dong_chi_tiet.ma_dich_vu_di_kem) as so_lan_su_dung
@@ -373,6 +373,43 @@ update dich_vu_di_kem
 set gia = gia*2 where ma_dich_vu_di_kem = (select ma_dich_vu_di_kem from `19_view`);
 set sql_safe_updates = 1;
 
+-- yêu cầu 20
+select nhan_vien.ma_nhan_vien as id, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
+from nhan_vien
+union
+select ma_khach_hang, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
+from khach_hang;
+
 -- yêu cầu 21
 create view v_nhan_vien as
-select 
+select ho_ten, count(hop_dong.ma_nhan_vien) as so_luong_hop_dong, nhan_vien.dia_chi
+from nhan_vien
+join hop_dong on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+group by nhan_vien.ho_ten
+having dia_chi regexp 'Yên Bái';
+
+-- yêu cầu 22
+set sql_safe_updates = 0;
+update nhan_vien 
+set dia_chi = 'Lê Duẩn' where dia_chi = (select dia_chi from `v_nhan_vien`);
+set sql_safe_updates = 1;
+
+-- yêu cầu 23
+DELIMITER //
+CREATE PROCEDURE sp_xoa_khach_hang(IN id INT(11))
+BEGIN
+delete from khach_hang where ma_khach_hang = id;
+END //
+DELIMITER ;
+
+-- yêu cầu 24
+DELIMITER //
+CREATE PROCEDURE sp_them_moi_hop_dong(ma_hd int, ngay_lam_hd datetime, ngay_kt datetime, tien_dc double, ma_nv int, ma_kh int, ma_dv int)
+BEGIN
+insert into hop_dong value (ma_hd, ngay_lam_hd, ngay_kt, tien_dc, ma_nv, ma_kh, ma_dv);
+
+END //
+DELIMITER ;
+drop procedure sp_them_moi_hop_dong;
+call sp_them_moi_hop_dong(13, '2020-01-01', '2020-02-02', 1000, 2, 2,1)
+
