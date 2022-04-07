@@ -404,12 +404,19 @@ DELIMITER ;
 
 -- yêu cầu 24
 DELIMITER //
-CREATE PROCEDURE sp_them_moi_hop_dong(ma_hd int, ngay_lam_hd datetime, ngay_kt datetime, tien_dc double, ma_nv int, ma_kh int, ma_dv int)
+create procedure sp_them_moi_hop_dong(ma_hd int, ngay_lam_hd datetime, ngay_kt datetime, tien_dc double, ma_nv int, ma_kh int, ma_dv int)
 BEGIN
+if ((select ma_hop_dong from hop_dong where hop_dong.ma_hop_dong = ma_hd) is null
+and(select ma_nhan_vien from nhan_vien where ma_nhan_vien = ma_nv) 
+and(select ma_khach_hang from khach_hang where ma_khach_hang = ma_kh) 
+and(select ma_dich_vu from dich_vu where ma_dich_vu = ma_dv) 
+and(ngay_kt > ngay_lam_hd)) then
 insert into hop_dong value (ma_hd, ngay_lam_hd, ngay_kt, tien_dc, ma_nv, ma_kh, ma_dv);
-
+else
+signal sqlstate '45000' set message_text = 'Dữ liệu không hợp lệ';
+end if;
 END //
 DELIMITER ;
 drop procedure sp_them_moi_hop_dong;
-call sp_them_moi_hop_dong(13, '2020-01-01', '2020-02-02', 1000, 2, 2,1)
+call sp_them_moi_hop_dong(14, '2020-01-01', '2020-02-02', 1000, 2, 2, 2)
 
