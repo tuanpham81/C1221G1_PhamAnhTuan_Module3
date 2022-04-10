@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bài tập</title>
+    <link rel="stylesheet" href="responsive_website.css">
+    <style>
+        .row {
+            display: block;
+        }
+
+        .col-1 {
+            width: 8.33%
+        }
+
+        .col-2 {
+            width: 16.66%
+        }
+
+        .col-3 {
+            width: 25%
+        }
+
+        .col-4 {
+            width: 33.3%
+        }
+
+        .col-5 {
+            width: 41.66%
+        }
+
+        .col-6 {
+            width: 50%
+        }
+
+        .col-7 {
+            width: 58.33%
+        }
+
+        .col-8 {
+            width: 66.66%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33%;
+        }
+
+        .col-11 {
+            width: 91.66%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        [class*=col-] {
+            float: left;
+            padding-right: 5px;
+        }
+
+        @media screen and (max-width: 1080px){
+            [class*= col-] {
+                width: 50%;
+            }
+        }
+        @media screen and (max-width: 500px){
+            [class*= col-] {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<div class = row>
+    <div id="head">
+        <a href="web_xem_hoat_hinh.html"><img width="7%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/VTV3_logo_2013_final.svg/1200px-VTV3_logo_2013_final.svg.png"></a>
+
+    </div>
+    <div id="head-link">
+
+    </div>
+    <div id="left">
+        <div class="col-3">
+            <img style="width: 350%" src="https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/horizontal_poster-050624138f6b-1606793288155-R5uLsI41.png?v=0&maxW=600&format=jpg">
+            <p>Phim hoạt hình hấp dẫn</p>
+        </div>
+<!--        <div class="col-3">-->
+<!--            <iframe src="https://www.youtube.com/embed/-SBBef-OEiE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+<!--            <p>Phim hoạt hình hấp dẫn</p>-->
+<!--        </div>-->
+<!--        <div class="col-3">-->
+<!--            <iframe src="https://www.youtube.com/embed/E4povfmX144" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+<!--            <p>Phim hoạt hình hấp dẫn</p>-->
+<!--        </div>-->
+    </div>
+    <div id="right">
+        <div class="col-6">
+            <iframe src="https://www.youtube.com/embed/QwLGcuUoqZw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Phim hoạt hình hấp dẫn</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
