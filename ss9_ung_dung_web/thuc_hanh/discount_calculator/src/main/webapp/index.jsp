@@ -12,12 +12,15 @@
   </head>
   <body>
   <h1>Product Discount Calculator</h1>
-  <form action="/display-discount" method="get">
-    <label>Rate: </label><br/>
-    <input type="text" name="rate" placeholder="RATE" value="22000"/><br/>
-    <label>USD: </label><br/>
-    <input type="text" name="usd" placeholder="USD" value="0"/><br/>
-    <input type = "submit" id = "submit" value = "Converter"/>
+  <form action="/display-discount" method="post">
+    <label>Product's Name: </label><br/>
+    <input type="text" name="name"/><br/>
+    <label>Product's Price: </label><br/>
+    <input type="number" name="price" placeholder="VND"/><br/>
+    <label>Discount Percent: </label><br/>
+    <input type="number" name="percent" placeholder="%"/><br/>
+    <br>
+    <input type = "submit" id = "submit" value = "Calculate"/>
   </form>
   </body>
 </html>
