@@ -15,12 +15,10 @@ public class DiscountCalculatorServlet extends HttpServlet {
         double discount_amount = price * percent * 0.01;
         double discount_price = price - discount_amount;
 
-        PrintWriter writer = response.getWriter();
-        writer.println("<html>");
+        request.setAttribute("discount_amount", discount_amount);
+        request.setAttribute("discount_price", discount_price);
 
-        writer.println("<p>Discount Amount: " + discount_amount +" VND"+"</p>");
-        writer.println("<p>Price after discount: " + discount_price +" VND"+ "</p>");
-        writer.println("</html>");
+        request.getRequestDispatcher("result.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
