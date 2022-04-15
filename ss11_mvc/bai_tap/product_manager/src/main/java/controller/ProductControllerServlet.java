@@ -1,7 +1,7 @@
 package controller;
 
-import model.Customer;
-import service.CustomerServiceImpl;
+import model.Product;
+import service.ProductServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "CustomerServlet", urlPatterns = {"/customers","/"})
-public class CustomerServlet extends HttpServlet {
-    private CustomerServiceImpl customerService = new CustomerServiceImpl();
+@WebServlet(name = "ProductControllerServlet", urlPatterns = {"/products","/"})
+public class ProductControllerServlet extends HttpServlet {
+    private ProductServiceImpl productService = new ProductServiceImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -23,13 +23,13 @@ public class CustomerServlet extends HttpServlet {
         }
         switch (action){
             case "create":
-                createCustomer(request,response);
+                createProduct(request,response);
                 break;
             case "edit":
-                updateCustomer(request, response);
+                updateProduct(request, response);
                 break;
             case "delete":
-                deleteCustomer(request,response);
+                deleteProduct(request,response);
                 break;
             default:
                 break;
@@ -52,150 +52,144 @@ public class CustomerServlet extends HttpServlet {
                 showDeleteForm(request, response);
                 break;
             case "view":
-                viewCustomer(request, response);
+                viewProduct(request, response);
                 break;
             default:
-                listCustomers(request, response);
+                listProduct(request, response);
                 break;
         }
     }
-    //hiển thị danh sách khách hàng từ list.jsp
-    private void listCustomers(HttpServletRequest request, HttpServletResponse response) {
-        List<Customer> customers = this.customerService.findAll();
-        request.setAttribute("customers", customers);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/list.jsp");
+    private void listProduct(HttpServletRequest request, HttpServletResponse response) {
+        List<Product> products = this.productService.findAll();
+        request.setAttribute("products", products);
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
         try {
             requestDispatcher.forward(request,response) ;
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
-    // hiển thị form thêm mới từ file create.jsp
-    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    //thêm mới khách hàng
-    private void createCustomer(HttpServletRequest request, HttpServletResponse response) {
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String address = request.getParameter("address");
-        int id = (int)(Math.random() * 10000);
 
-        Customer customer = new Customer(id, name, email, address);
-        this.customerService.save(customer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");
-        request.setAttribute("message", "New customer was created");
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
-    // hiển thị form edit từ file edit.jsp
+
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        Integer price = Integer.parseInt(request.getParameter("price"));
+        String description = request.getParameter("description");
+        String brand = request.getParameter("brand");
+        int id = (int)(Math.random() * 10000);
+
+        Product product = new Product(id, name, price, description, brand);
+        productService.save(product);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+        request.setAttribute("message", "New product was created");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Customer customer = this.customerService.findById(id);
+        Product product = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if(customer == null){
+        if(product == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            request.setAttribute("customer", customer);
-            dispatcher = request.getRequestDispatcher("customer/edit.jsp");
+            request.setAttribute("product", product);
+            dispatcher = request.getRequestDispatcher("product/edit.jsp");
         }
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
     //edit thông tin khách hàng
-    private void updateCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String address = request.getParameter("address");
-        Customer customer = this.customerService.findById(id);
+        Integer price = Integer.parseInt(request.getParameter("price"));
+        String description = request.getParameter("description");
+        String brand = request.getParameter("brand");
+        Product product = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if(customer == null){
+        if(product == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            customer.setName(name);
-            customer.setEmail(email);
-            customer.setAddress(address);
-            this.customerService.update(id, customer);
-            request.setAttribute("customer", customer);
-            request.setAttribute("message", "Customer information was updated");
-            dispatcher = request.getRequestDispatcher("customer/edit.jsp");
+            product.setId(id);
+            product.setName(name);
+            product.setPrice(price);
+            product.setDescription(description);
+            product.setBrand(brand);
+            this.productService.update(id, product);
+            request.setAttribute("product", product);
+            request.setAttribute("message", "Product information was updated");
+            dispatcher = request.getRequestDispatcher("product/edit.jsp");
         }
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
     // hiển thị form xóa khách hàng từ file delete.jsp
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Customer customer = this.customerService.findById(id);
+        Product product = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if(customer == null){
+        if(product == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            request.setAttribute("customer", customer);
-            dispatcher = request.getRequestDispatcher("customer/delete.jsp");
+            request.setAttribute("product", product);
+            dispatcher = request.getRequestDispatcher("product/delete.jsp");
         }
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
-    //xóa khách hàng
-    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Customer customer = this.customerService.findById(id);
+        Product product = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if(customer == null){
+        if(product == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            this.customerService.remove(id);
+            this.productService.remove(id);
             try {
-                response.sendRedirect("/customers");
+                response.sendRedirect("/products");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
     //xem thông tin khách hàng
-    private void viewCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void viewProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Customer customer = this.customerService.findById(id);
+        Product product = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if(customer == null){
+        if(product == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            request.setAttribute("customer", customer);
-            dispatcher = request.getRequestDispatcher("customer/view.jsp");
+            request.setAttribute("product", product);
+            dispatcher = request.getRequestDispatcher("product/view.jsp");
         }
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }

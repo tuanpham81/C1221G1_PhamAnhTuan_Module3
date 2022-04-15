@@ -15,4 +15,3 @@ public interface CustomerService {
 
     void remove(int id);
 }
-
