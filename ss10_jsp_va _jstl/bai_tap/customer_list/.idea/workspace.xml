@@ -20,36 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="971038b6-5b03-4704-b584-fd3bab5390f2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/currency-converter-jsp/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/currency-converter-jsp/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/currency-converter-jsp/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/currency-converter-jsp/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/currency-converter-jsp/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/currency-converter-jsp/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/simple-dictionary-jsp/src/main/webapp/dictionary.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.idea/discount_calculator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/6.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/build/classes/java/main/DiscountCalculatorServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/build/classes/java/main/DiscountCalculatorServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/build/libs/discount_calculator-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/build/libs/discount_calculator-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/src/main/java/DiscountCalculatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/bai_tap/discount_calculator/src/main/java/DiscountCalculatorServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss9_ung_dung_web/thuc_hanh/java-web-currency-converter/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss9_ung_dung_web/thuc_hanh/java-web-currency-converter/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/build/classes/java/main/controller/CalculatorServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/build/classes/java/main/controller/CalculatorServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/build/libs/calculator-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/build/libs/calculator-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../calculator/src/main/java/controller/CalculatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../calculator/src/main/java/controller/CalculatorServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +70,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../module2/src/giai_thuat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.62" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.62" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -177,6 +158,7 @@
       <updated>1649820697601</updated>
       <workItem from="1649820701232" duration="11467000" />
       <workItem from="1649857043681" duration="656000" />
+      <workItem from="1649904071548" duration="789000" />
     </task>
     <servers />
   </component>
