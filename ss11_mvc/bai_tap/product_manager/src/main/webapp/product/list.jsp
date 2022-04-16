@@ -16,8 +16,14 @@
 <p>
     <a href="/products?action=create">Create new product</a>
 </p>
+<form>
+    <label>Product name: </label>
+    <input type="text" name="name">
+    <button type="submit">Tìm kiếm</button>
+</form>
 <table border="1">
     <tr>
+        <th>Id</th>
         <th>Name</th>
         <th>Price</th>
         <th>Description</th>
@@ -25,8 +31,9 @@
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <c:forEach var="product" items='${requestScope["products"]}'>
+    <c:forEach var="product" items='${products}'>
         <tr>
+            <th>${product.id}</th>
             <th><a href="/products?action=view&id=${product.id}">${product.getName()}</a></th>
             <th>${product.getPrice()}</th>
             <th>${product.getDescription()}</th>

@@ -44,7 +44,6 @@
                 <td></td>
                 <td><input type="submit" value="Update product"></td>
             </tr>
-
         </table>
     </fieldset>
 </form>

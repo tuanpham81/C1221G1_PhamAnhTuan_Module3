@@ -19,14 +19,15 @@
 <body>
 <h1>Create new product</h1>
 <p>
-    <c:if test='${requestScope["message"] != null}'>
-        <span class="message">${requestScope["message"]}</span>
+    <c:if test='${message != null}'>
+        <span class="message">${message}</span>
     </c:if>
 </p>
 <p>
     <a href="/products">Back to product list</a>
 </p>
 <form method="post">
+<%--    tại sao lại ko cần action?--%>
     <fieldset>
         <legend>Product information</legend>
         <table>
