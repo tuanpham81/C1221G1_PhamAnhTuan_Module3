@@ -11,7 +11,9 @@ public interface ProductService {
 
     Product findById(int id);
 
-    void update(int id, Product product);
+    void update(int id, String name, int price, String description, String brand, Product product);
 
     void remove(int id);
+
+    List<Product> search(String name);
 }

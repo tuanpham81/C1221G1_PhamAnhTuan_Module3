@@ -16,8 +16,8 @@
 <p>
     <a href="/products?action=create">Create new product</a>
 </p>
-<form>
-    <label>Product name: </label>
+<form method="post" action="/products?action=search">
+    <label> Search product by name: </label>
     <input type="text" name="name">
     <button type="submit">Tìm kiếm</button>
 </form>

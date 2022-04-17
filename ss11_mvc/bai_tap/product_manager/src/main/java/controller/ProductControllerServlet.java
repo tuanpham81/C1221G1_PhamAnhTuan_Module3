@@ -31,9 +31,18 @@ public class ProductControllerServlet extends HttpServlet {
             case "delete":
                 deleteProduct(request,response);
                 break;
+            case "search":
+                searchProduct(request, response);
             default:
                 break;
         }
+    }
+
+    private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        List<Product> productList = productService.search(name);
+        request.setAttribute("products", productList);
+        request.getRequestDispatcher("product/list.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -118,6 +127,7 @@ public class ProductControllerServlet extends HttpServlet {
     //edit thông tin khách hàng
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
+//        có thuộc tính nào là id ở jsp đâu?
         String name = request.getParameter("name");
         Integer price = Integer.parseInt(request.getParameter("price"));
         String description = request.getParameter("description");
@@ -127,12 +137,7 @@ public class ProductControllerServlet extends HttpServlet {
         if(product == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            product.setId(id);
-            product.setName(name);
-            product.setPrice(price);
-            product.setDescription(description);
-            product.setBrand(brand);
-            this.productService.update(id, product);
+            this.productService.update(id, name, price, description, brand, product);
             request.setAttribute("product", product);
             request.setAttribute("message", "Product information was updated");
             dispatcher = request.getRequestDispatcher("product/edit.jsp");
