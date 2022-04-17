@@ -32,10 +32,6 @@ public class ProductServiceImpl implements ProductService {
         return products.get(id);
     }
 
-    //    @Override
-//    public void update(int id, Product product) {
-//        products.put(id, product);
-//    }
     @Override
     public void update(int id, String name, int price, String description, String brand, Product product) {
         product.setId(id);

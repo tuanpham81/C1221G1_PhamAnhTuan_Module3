@@ -21,6 +21,17 @@
 <div align="center">
     <table border="1" cellpadding="5">
         <caption><h2>List of Users</h2></caption>
+        <form method="post" action="/users?action=search">
+            <label> Search user by country</label>
+            <input type="text" name="country">
+            <button type="submit">Search</button>
+        </form>
+        <br>
+        <br>
+        <form action="/users?action=sortbyname" method="post">
+            <button type="submit" >Sort by name</button>
+
+        </form>
         <tr>
             <th>ID</th>
             <th>Name</th>

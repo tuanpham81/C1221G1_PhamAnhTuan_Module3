@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3306/ss12_demo?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "nakapu8196";
@@ -16,6 +16,8 @@ public class UserDAO {
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String SEARCH_USERS_BY_COUNTRY_SQL = "select * from users where country like ?;";
+    private static final String SORT_USERS_BY_NAME_SQL = "select * from users order by name;";
 
     public UserDAO() {
     }
@@ -25,10 +27,7 @@ public class UserDAO {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -38,7 +37,8 @@ public class UserDAO {
     public void insertUser(User user) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
         // try-with-resource statement will auto close the connection.
-        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getCountry());
@@ -107,6 +107,48 @@ public class UserDAO {
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;
+    }
+
+    @Override
+    public List<User> searchUserByCountry(String searchCountry) {
+        List<User> users = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USERS_BY_COUNTRY_SQL);) {
+            String searchCountryString = '%'+searchCountry+'%';
+            preparedStatement.setString(1, searchCountryString);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                users.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return users;
+    }
+
+    @Override
+    public List<User> sortUserByName() {
+        List<User> users = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SORT_USERS_BY_NAME_SQL);) {
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                users.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return users;
     }
 
     public boolean updateUser(User user) throws SQLException {
