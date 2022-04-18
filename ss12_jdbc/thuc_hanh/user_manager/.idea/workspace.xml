@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d257a92d-e8c7-4760-a610-0bf4e577c6a7" name="Default Changelist" comment="" />
+    <list default="true" id="d257a92d-e8c7-4760-a610-0bf4e577c6a7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../ss11_mvc/bai_tap/product_manager/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss11_mvc/bai_tap/product_manager/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,10 +60,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../bai_tap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../user_manager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -154,6 +159,7 @@
       <workItem from="1650123226886" duration="125000" />
       <workItem from="1650123970958" duration="3912000" />
       <workItem from="1650168413919" duration="11415000" />
+      <workItem from="1650246862205" duration="61000" />
     </task>
     <servers />
   </component>
@@ -170,6 +176,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="127" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1650124976222">
@@ -180,10 +187,10 @@
       <screen x="62" y="0" width="1218" height="720" />
     </state>
     <state x="477" y="67" key="#com.intellij.ide.util.MemberChooser/62.0.1218.720@62.0.1218.720" timestamp="1650190899422" />
-    <state x="452" y="116" key="FileChooserDialogImpl" timestamp="1650182149849">
+    <state x="452" y="116" key="FileChooserDialogImpl" timestamp="1650246921441">
       <screen x="62" y="0" width="1218" height="720" />
     </state>
-    <state x="452" y="116" key="FileChooserDialogImpl/62.0.1218.720@62.0.1218.720" timestamp="1650182149849" />
+    <state x="452" y="116" key="FileChooserDialogImpl/62.0.1218.720@62.0.1218.720" timestamp="1650246921441" />
     <state width="801" height="231" key="GridCell.Tab.0.bottom" timestamp="1650193438432">
       <screen x="62" y="0" width="1218" height="720" />
     </state>

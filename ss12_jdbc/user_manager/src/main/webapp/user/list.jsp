@@ -30,7 +30,6 @@
         <br>
         <form action="/users?action=sortbyname" method="post">
             <button type="submit" >Sort by name</button>
-
         </form>
         <tr>
             <th>ID</th>
