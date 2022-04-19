@@ -23,4 +23,18 @@ public interface UserService {
     User getUserById(int id);
 
     void insertUserStore(User user) throws SQLException;
+
+    void addUserTransaction(User user, int[] permisions);
+
+    public void insertUpdateWithoutTransaction();
+
+    public void insertUpdateUseTransaction();
+
+    void testUseTran();
+
+    List<User> showAllUserStore();
+
+    void editUserStore(int id, String name, String email, String country);
+
+    void deleteUserStore(int id);
 }
