@@ -79,7 +79,7 @@ public class UserRepositoryImpl implements UserRepository {
         // Step 1: Establishing a Connection
         try (Connection connection = baseRepository.getConnection();
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);   ) {
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
@@ -283,7 +283,6 @@ public class UserRepositoryImpl implements UserRepository {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
     @Override

@@ -40,6 +40,9 @@ public class UserController extends HttpServlet {
                 case "search":
                     searchUserByCountry(request, response);
                     break;
+                case "delete":
+                    deleteUser(request, response);
+                    break;
                 case "sortbyname":
                     sortByName(request, response);
             }
@@ -63,9 +66,9 @@ public class UserController extends HttpServlet {
                 case "edit":
                     showEditForm(request, response);
                     break;
-                case "delete":
-                    deleteUser(request, response);
-                    break;
+//                case "delete":
+//                    deleteUser(request, response);
+//                    break;
                 case "permision":
                     addUserPermision(request, response);
                     break;
@@ -102,8 +105,8 @@ public class UserController extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-//        List<User> listUser = userService.selectAllUsers();
-        List<User> listUser = userService.showAllUserStore(); // sử dụng SP
+        List<User> listUser = userService.selectAllUsers();
+//        List<User> listUser = userService.showAllUserStore(); // sử dụng SP
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
@@ -155,8 +158,8 @@ public class UserController extends HttpServlet {
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-//        userService.deleteUser(id);
-        userService.deleteUserStore(id);
+        userService.deleteUser(id);
+//        userService.deleteUserStore(id);
         List<User> listUser = userService.selectAllUsers();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
