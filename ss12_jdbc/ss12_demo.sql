@@ -53,6 +53,7 @@ insert into Permision(id, name) values(4, 'view');
 
 
 DELIMITER //
+drop procedure if exists list_all_user //
 CREATE PROCEDURE list_all_user()
 BEGIN
     SELECT * from users;
@@ -60,13 +61,13 @@ end //
 DELIMITER ;
 
 
-
 DELIMITER //
-CREATE PROCEDURE edit_user_by_id(edit_id INT, new_name varchar(50), new_email varchar(50), country varchar(50))
+drop procedure if exists edit_user_by_id //
+CREATE  PROCEDURE edit_user_by_id(edit_id INT, new_name varchar(50), new_email varchar(50), country varchar(50))
 BEGIN
 set sql_safe_updates = 0;
 update users
-set 'name' = new_name,
+set name = new_name,
 email = new_email,
 country = new_country
 where id = edit_id;
@@ -75,7 +76,8 @@ END //
 DELIMITER ;
 
 
-DELIMITER $$
+DELIMITER //
+drop procedure if exists delete_user_by_id //
 CREATE PROCEDURE delete_user_by_id(delete_id int)
 BEGIN
 set sql_safe_updates = 0;

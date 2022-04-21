@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface CustomerService {
     void insertCustomer(Customer customer) throws SQLException;
+    Customer selectCustomer(int id);
     List<Customer> selectAllCustomer();
-    void editCustomer() throws SQLException;
-    void deleteCustomer() throws SQLException;
+    boolean updateCustomer(Customer customer) throws SQLException;
+    boolean deleteCustomer(int id) throws SQLException;
+    void deleteCustomerSP(int id) throws SQLException;
+    List<Customer> searchCustomerByName(String searchName);
 }

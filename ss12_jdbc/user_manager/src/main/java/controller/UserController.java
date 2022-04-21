@@ -121,8 +121,8 @@ public class UserController extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-//        User existingUser = userService.selectUser(id);
-        User existingUser = userService.getUserById(id); //sử dụng stored procedure
+        User existingUser = userService.selectUser(id);
+//        User existingUser = userService.getUserById(id); //sử dụng stored procedure
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -148,9 +148,9 @@ public class UserController extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
 
-//        User user = new User(id, name, email, country);
-//        userService.updateUser(user);
-        userService.editUserStore(id,name,email,country); // sử dụng SP
+        User user = new User(id, name, email, country);
+        userService.updateUser(user);
+//        userService.editUserStore(id,name,email,country); // sử dụng SP
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         dispatcher.forward(request, response);
     }

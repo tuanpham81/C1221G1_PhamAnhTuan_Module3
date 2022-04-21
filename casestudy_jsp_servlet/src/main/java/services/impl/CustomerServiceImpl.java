@@ -13,7 +13,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void insertCustomer(Customer customer) throws SQLException{
-        customerRepo.insertCustomer();
+        customerRepo.insertCustomer(customer);
+    }
+
+    @Override
+    public Customer selectCustomer(int id) {
+        return customerRepo.selectCustomer(id);
     }
 
     @Override
@@ -22,13 +27,23 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void editCustomer() throws SQLException{
-        customerRepo.editCustomer();
+    public boolean updateCustomer(Customer customer) throws SQLException{
+        return customerRepo.updateCustomer(customer);
     }
 
     @Override
-    public void deleteCustomer() throws SQLException{
-        customerRepo.deleteCustomer();
+    public boolean deleteCustomer(int id) throws SQLException{
+        return customerRepo.deleteCustomer(id);
+    }
+
+    @Override
+    public void deleteCustomerSP(int id) throws SQLException{
+        customerRepo.deleteCustomerSP(id);
+    }
+
+    @Override
+    public List<Customer> searchCustomerByName(String searchName) {
+        return customerRepo.searchCustomerByName(searchName);
     }
 }
 
