@@ -6,13 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><html>
 <head>
     <title>Furama Service</title>
 </head>
 <body>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <title>Service Management Application</title>
@@ -22,16 +21,9 @@
 <body>
 <div  align="center">
     <h2>Service Management</h2>
-
-<%--    <form method="post" action="/services?action=search">--%>
-<%--        <label> Search customer by name</label>--%>
-<%--        <input type="text" name="searchName">--%>
-<%--        <button type="submit">Search</button>--%>
-<%--    </form>--%>
-
 </div>
 
-<%--<a href="/customers?action=create">Add New Customer</a>--%>
+<a href="/services?action=create">Add New Service</a>
 
 <div>
     <table border="1" cellpadding="5">
@@ -48,47 +40,25 @@
             <th>Pool Area</th>
             <th>Number of Floors</th>
         </tr>
-        <c:forEach var="customer" items="${customerList}">
+        <c:forEach var="service" items="${serviceList}">
             <tr>
-                <td><c:out value="${customer.customerId}"/></td>
-                <td>
-                    <c:forEach var="customerType" items="${customerTypeList}">
-                        <c:if test="${customer.customerType == customerType.typeId}">
-                            ${customerType.typeName}
-                        </c:if>
-                    </c:forEach>
-                </td>
-                <td><c:out value="${customer.name}"/></td>
-                <td><c:out value="${customer.birthDay}"/></td>
-                <td>
-                    <c:choose>
-                        <c:when test="${customer.gender=='1'}">
-                            Nam
-                            <br/>
-                        </c:when>
-                        <c:otherwise>
-                            Nữ
-                            <br/>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-                <td><c:out value="${customer.idCardNumber}"/></td>
-                <td><c:out value="${customer.phoneNumber}"/></td>
-                <td><c:out value="${customer.email}"/></td>
-                <td><c:out value="${customer.address}"/></td>
-                <td>
-                    <form method="post">
-                        <button>
-                            <a href="/customers?action=edit&id=${customer.customerId}">Edit</a>
-                        </button>
-                    </form>
-                </td>
-                <td>
-                    <button onclick="deleteCustomerModal(${customer.customerId},'${customer.name}')" type="button" class="btn btn-danger"
-                            data-toggle="modal" data-target="#exampleModal">
-                        Delete
-                    </button>
-                </td>
+                <td><c:out value="${service.serviceId}"/></td>
+                <td><c:out value="${service.name}"/></td>
+                <td><c:out value="${service.area}"/></td>
+                <td><c:out value="${service.cost}"/></td>
+                <td><c:out value="${service.maxPeople}"/></td>
+                <td><c:out value="${service.rentTypeId}"/></td>
+                <td><c:out value="${service.serviceTypeId}"/></td>
+                <td><c:out value="${service.standard}"/></td>
+                <td><c:out value="${service.otherConvenient}"/></td>
+                <td><c:out value="${service.poolArea}"/></td>
+                <td><c:out value="${service.floorNumber}"/></td>
+<%--                <td>--%>
+<%--                    <button onclick="deleteServiceModal(${service.serviceId},'${service.name}')" type="button" class="btn btn-danger"--%>
+<%--                            data-toggle="modal" data-target="#exampleModal">--%>
+<%--                        Delete--%>
+<%--                    </button>--%>
+<%--                </td>--%>
             </tr>
         </c:forEach>
     </table>

@@ -4,17 +4,17 @@ public class Customer{
     public String name;
     public String birthDay;
     public Integer gender;
-    public Integer idCardNumber;
+    public String idCardNumber;
     public String phoneNumber;
     public String email;
-    public String customerId;
-    public String customerType;
+    public Integer customerId;
+    public Integer customerType;
     public String address;
 
     public Customer() {
     }
 
-    public Customer(String name, String birthDay, Integer gender, Integer idCardNumber, String phoneNumber, String email, String customerId, String customerType, String address) {
+    public Customer(String name, String birthDay, Integer gender, String idCardNumber, String phoneNumber, String email, Integer customerId, Integer customerType, String address) {
         this.name = name;
         this.birthDay = birthDay;
         this.gender = gender;
@@ -50,11 +50,11 @@ public class Customer{
         this.gender = gender;
     }
 
-    public Integer getIdCardNumber() {
+    public String getIdCardNumber() {
         return idCardNumber;
     }
 
-    public void setIdCardNumber(Integer idCardNumber) {
+    public void setIdCardNumber(String idCardNumber) {
         this.idCardNumber = idCardNumber;
     }
 
@@ -74,19 +74,19 @@ public class Customer{
         this.email = email;
     }
 
-    public String getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
-    public String getCustomerType() {
+    public Integer getCustomerType() {
         return customerType;
     }
 
-    public void setCustomerType(String customerType) {
+    public void setCustomerType(Integer customerType) {
         this.customerType = customerType;
     }
 

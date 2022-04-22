@@ -49,13 +49,14 @@
             <tr>
                 <th>Customer Gender:</th>
                 <td>
-                    <input type="number" name="gender" size="45"
-                           value="<c:out value='${customer.gender}' />"
-                    />
+                    <select name="gender">
+                        <option value="1">Nam</option>
+                        <option value="0">Nữ</option>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <th>Customer ID Card Number:</th>
+                <th>Customer ID Card:</th>
                 <td>
                     <input type="number" name="idCard" size="45"
                            value="<c:out value='${customer.idCardNumber}' />"
@@ -78,24 +79,15 @@
                     />
                 </td>
             </tr>
-<%--            <tr>--%>
-<%--                <th>Customer ID:</th>--%>
-<%--                <td>--%>
-<%--                    <input type="number" name="customerID" size="15"--%>
-<%--                           value="<c:out value='${customer.customerId}' />"--%>
-<%--                    />--%>
-<%--                </td>--%>
-<%--            </tr>--%>
             <tr>
                 <th>Customer Type:</th>
                 <td>
-                    <input type="text" name="customerType" size="15"
-                           value="<c:out value='${customer.customerType}' />"
-                    />
-<%--                    <select name="customerType">--%>
-<%--                        <c:forEach var="customerType" items="${customerTypeList}">--%>
-<%--                            <option value="${customer.customerType}">${customerType.typeId}</option>--%>
-<%--                        </c:forEach>--%>
+<%--                    <input type="text" name="customerType" size="15"--%>
+<%--                           value="<c:out value='${customer.customerType}'/>"/>--%>
+                    <select name="customerType">
+                        <c:forEach var="customerType" items="${customerTypeList}">
+                            <option value="${customer.customerType}">${customerType.typeName}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>

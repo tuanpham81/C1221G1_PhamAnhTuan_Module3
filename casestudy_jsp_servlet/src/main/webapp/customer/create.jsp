@@ -28,13 +28,19 @@
             <tr>
                 <th>Customer ID:</th>
                 <td>
-                    <input type="text" name="id"size="45"/>
+                    <input type="number" name="customerId" size="45"/>
                 </td>
             </tr>
             <tr>
                 <th>Customer Type:</th>
                 <td>
-                    <input type="number" name="customerType" size="45"/>
+                    <select name="customerType">
+                        <%--                        <c:forEach var="customer" items="${customerType}">--%>
+                        <c:forEach var="customerType" items="${customerTypeList}">
+                            <option value="${customerType.typeId}">${customerType.typeName}</option>
+                            <%--                            </c:forEach>--%>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -52,13 +58,17 @@
             <tr>
                 <th>Customer Gender:</th>
                 <td>
-                    <input type="number" name="gender" size="45"/>
+                    <select name="gender">
+                        <option value="1">Nam</option>
+                        <option value="0">Nữ</option>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <th>Customer IDCard:</th>
+                <th>Customer ID Card:</th>
                 <td>
-                    <input type="number" name="idCard" size="45"/>
+                    <input type="text" name="idCard" size="45"/>
+                    <p></p>
                 </td>
             </tr>
             <tr>

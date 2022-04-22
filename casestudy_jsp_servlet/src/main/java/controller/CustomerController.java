@@ -19,9 +19,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "CustomerController", urlPatterns = {"/customers", "/"})
+@WebServlet(name = "CustomerController", urlPatterns = {"/customers"})
 public class CustomerController extends HttpServlet {
-    private BaseRepository baseRepository = new BaseRepository();
     private CustomerService customerService;
     private CustomerTypeService customerTypeService;
 
@@ -55,9 +54,6 @@ public class CustomerController extends HttpServlet {
         }
     }
 
-
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -76,16 +72,22 @@ public class CustomerController extends HttpServlet {
     }
 
     private void editCustomerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        List<CustomerType> customerTypeList = customerTypeService.selectAllCustomerType();
+        String id = request.getParameter("customerId");
         Customer existingCustomer = customerService.selectCustomer(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer/edit.jsp");
         request.setAttribute("customer", existingCustomer);
+        request.setAttribute("customerTypeList", customerTypeList);
         dispatcher.forward(request, response);
 
     }
 
     private void createCustomerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Customer> customerList = customerService.selectAllCustomer();
+        List<CustomerType> customerTypeList = customerTypeService.selectAllCustomerType();
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");
+        request.setAttribute("customerList", customerList);
+        request.setAttribute("customerTypeList", customerTypeList);
         dispatcher.forward(request, response);
     }
 
@@ -100,7 +102,7 @@ public class CustomerController extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        int idCustomer = Integer.parseInt(request.getParameter("idCustomer"));
+        String idCustomer = request.getParameter("idCustomer");
 //        customerService.deleteCustomer(idCustomer);
         customerService.deleteCustomerSP(idCustomer);
         List<Customer> customerList = customerService.selectAllCustomer();
@@ -110,12 +112,12 @@ public class CustomerController extends HttpServlet {
     }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String customerId = request.getParameter("customerId");
-        String customerType = request.getParameter("customerType");
+        Integer customerId = Integer.valueOf(request.getParameter("customerId"));
+        Integer customerType = Integer.valueOf(request.getParameter("customerType"));
         String name = request.getParameter("name");
         String birthday = request.getParameter("birthday");
         Integer gender = Integer.parseInt(request.getParameter("gender"));
-        Integer idCard = Integer.parseInt(request.getParameter("idCard"));
+        String idCard = request.getParameter("idCard");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
@@ -127,16 +129,15 @@ public class CustomerController extends HttpServlet {
     }
 
     private void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String customerId = request.getParameter("customerId");
-        String customerType = request.getParameter("customerType");
+        Integer customerId = Integer.valueOf(request.getParameter("customerId"));
+        Integer customerType = Integer.valueOf(request.getParameter("customerType"));
         String name = request.getParameter("name");
         String birthday = request.getParameter("birthday");
         Integer gender = Integer.parseInt(request.getParameter("gender"));
-        Integer idCard = Integer.parseInt(request.getParameter("idCard"));
+        String idCard = request.getParameter("idCard");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-
         Customer customer = new Customer(name, birthday, gender, idCard, phone, email, customerId, customerType, address);
         customerService.insertCustomer(customer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");

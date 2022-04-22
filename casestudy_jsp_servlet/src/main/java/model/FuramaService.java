@@ -10,13 +10,13 @@ public class FuramaService {
     public Integer serviceTypeId;
     public String standard;
     public String otherConvenient;
-    public Float pool_area;
+    public Float poolArea;
     public Integer floorNumber;
 
     public FuramaService() {
     }
 
-    public FuramaService(Integer serviceId, String name, Float area, Float cost, Integer maxPeople, Integer rentTypeId, Integer serviceTypeId, String standard, String otherConvenient, Float pool_area, Integer floorNumber) {
+    public FuramaService(Integer serviceId, String name, Float area, Float cost, Integer maxPeople, Integer rentTypeId, Integer serviceTypeId, String standard, String otherConvenient, Float poolArea, Integer floorNumber) {
         this.serviceId = serviceId;
         this.name = name;
         this.area = area;
@@ -26,7 +26,7 @@ public class FuramaService {
         this.serviceTypeId = serviceTypeId;
         this.standard = standard;
         this.otherConvenient = otherConvenient;
-        this.pool_area = pool_area;
+        this.poolArea = poolArea;
         this.floorNumber = floorNumber;
     }
 
@@ -102,12 +102,12 @@ public class FuramaService {
         this.otherConvenient = otherConvenient;
     }
 
-    public Float getPool_area() {
-        return pool_area;
+    public Float getPoolArea() {
+        return poolArea;
     }
 
-    public void setPool_area(Float pool_area) {
-        this.pool_area = pool_area;
+    public void setPool_area(Float poolArea) {
+        this.poolArea = poolArea;
     }
 
     public Integer getFloorNumber() {

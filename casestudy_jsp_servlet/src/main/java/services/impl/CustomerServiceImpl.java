@@ -6,18 +6,41 @@ import repository.impl.CustomerRepositoryImpl;
 import services.CustomerService;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepo = new CustomerRepositoryImpl();
 
     @Override
     public void insertCustomer(Customer customer) throws SQLException{
-        customerRepo.insertCustomer(customer);
+        Map<String,String> map = new HashMap<>();
+        if (customer.idCardNumber.equals("")){
+            map.put("cmnd", "CMND không được để trống");
+        } else if (!customer.idCardNumber.matches("^\\d{9}|\\d{12}$")){
+            map.put("cmnd","CMND không hợp lệ");
+        }
+
+        if (customer.phoneNumber.equals("")){
+            map.put("phone","Số điện thoại không được để trống");
+        } else if (!customer.phoneNumber.matches("^((090)|(091)|([(]84[)][+]90)|([(]84[)][+]91))\\d{7}$")){
+            map.put("phone","Số điện thoại không hợp lệ");
+        }
+
+        if (customer.email.equals("")){
+            map.put("email","Email không được để trống");
+        } else if (!customer.email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@" +
+                "[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$"))
+
+            if (map.isEmpty()){
+                customerRepo.insertCustomer(customer);
+            }
+//        return map;
     }
 
     @Override
-    public Customer selectCustomer(int id) {
+    public Customer selectCustomer(String id) {
         return customerRepo.selectCustomer(id);
     }
 
@@ -31,13 +54,13 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepo.updateCustomer(customer);
     }
 
-    @Override
-    public boolean deleteCustomer(int id) throws SQLException{
-        return customerRepo.deleteCustomer(id);
-    }
+//    @Override
+//    public boolean deleteCustomer(String id) throws SQLException{
+//        return customerRepo.deleteCustomer(id);
+//    }
 
     @Override
-    public void deleteCustomerSP(int id) throws SQLException{
+    public void deleteCustomerSP(String id) throws SQLException{
         customerRepo.deleteCustomerSP(id);
     }
 

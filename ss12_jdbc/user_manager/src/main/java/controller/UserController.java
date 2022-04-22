@@ -46,9 +46,9 @@ public class UserController extends HttpServlet {
                 case "sortbyname":
                     sortByName(request, response);
             }
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
-        }
+            } catch (SQLException ex) {
+                throw new ServletException(ex);
+            }
     }
 
 
