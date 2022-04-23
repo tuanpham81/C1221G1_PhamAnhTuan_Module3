@@ -3,20 +3,20 @@ package model;
 public class FuramaService {
     public Integer serviceId;
     public String name;
-    public Float area;
-    public Float cost;
+    public Integer area;
+    public Double cost;
     public Integer maxPeople;
     public Integer rentTypeId;
     public Integer serviceTypeId;
     public String standard;
     public String otherConvenient;
-    public Float poolArea;
+    public double poolArea;
     public Integer floorNumber;
 
     public FuramaService() {
     }
 
-    public FuramaService(Integer serviceId, String name, Float area, Float cost, Integer maxPeople, Integer rentTypeId, Integer serviceTypeId, String standard, String otherConvenient, Float poolArea, Integer floorNumber) {
+    public FuramaService(Integer serviceId, String name, Integer area, Double cost, Integer maxPeople, Integer rentTypeId, Integer serviceTypeId, String standard, String otherConvenient, Double poolArea, Integer floorNumber) {
         this.serviceId = serviceId;
         this.name = name;
         this.area = area;
@@ -46,19 +46,19 @@ public class FuramaService {
         this.name = name;
     }
 
-    public Float getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(Float area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
-    public Float getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(Float cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
@@ -102,11 +102,11 @@ public class FuramaService {
         this.otherConvenient = otherConvenient;
     }
 
-    public Float getPoolArea() {
+    public Double getPoolArea() {
         return poolArea;
     }
 
-    public void setPool_area(Float poolArea) {
+    public void setPool_area(Double poolArea) {
         this.poolArea = poolArea;
     }
 

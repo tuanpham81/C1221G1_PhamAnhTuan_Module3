@@ -21,14 +21,14 @@ public class FuramaServiceRepositoryImpl implements FuramaServiceRepository {
              PreparedStatement statement = connection.prepareStatement(SQL_INSERT_SERVICES)) {
             statement.setInt(1, furamaService.serviceId);
             statement.setString(2, furamaService.name);
-            statement.setFloat(3, furamaService.area);
-            statement.setFloat(4, furamaService.cost);
+            statement.setInt(3, furamaService.area);
+            statement.setDouble(4, furamaService.cost);
             statement.setInt(5, furamaService.maxPeople);
             statement.setInt(6, furamaService.rentTypeId);
             statement.setInt(7, furamaService.serviceTypeId);
             statement.setString(8, furamaService.standard);
             statement.setString(9, furamaService.otherConvenient);
-            statement.setFloat(10, furamaService.poolArea);
+            statement.setDouble(10, furamaService.poolArea);
             statement.setInt(11, furamaService.floorNumber);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -41,20 +41,18 @@ public class FuramaServiceRepositoryImpl implements FuramaServiceRepository {
         List<FuramaService> serviceList = new ArrayList<>();
         try (Connection connection = baseRepository.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_SERVICES);) {
-            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 int serviceId = rs.getInt("ma_dich_vu");
                 String name = rs.getString("ten_dich_vu");
-                float area = rs.getFloat("dien_tich");
-                float cost = rs.getFloat("chi_phi_thue");
+                Integer area = rs.getInt("dien_tich");
+                Double cost = rs.getDouble("chi_phi_thue");
                 int maxPeople = rs.getInt("so_nguoi_toi_da");
                 int rentTypeId = rs.getInt("ma_kieu_thue");
                 int serviceTypeId = rs.getInt("ma_loai_dich_vu");
                 String standard = rs.getString("tieu_chuan_phong");
                 String otherConvenient = rs.getString("mo_ta_tien_nghi_khac");
-                float poolArea = rs.getFloat("dien_tich_ho_boi");
+                Double poolArea = rs.getDouble("dien_tich_ho_boi");
                 int floorNumber = rs.getInt("so_tang");
                 serviceList.add(new FuramaService(serviceId, name, area, cost, maxPeople, rentTypeId, serviceTypeId, standard, otherConvenient,poolArea,floorNumber));
             }

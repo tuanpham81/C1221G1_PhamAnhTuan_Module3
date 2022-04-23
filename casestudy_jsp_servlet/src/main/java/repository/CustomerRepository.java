@@ -15,7 +15,7 @@ public interface CustomerRepository {
 
     boolean updateCustomer(Customer customer) throws SQLException;
 
-    boolean deleteCustomer(String id) throws SQLException;
+//    boolean deleteCustomer(String id) throws SQLException;
 
     void deleteCustomerSP(String id) throws SQLException;
 

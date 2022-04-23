@@ -7,11 +7,11 @@ import repository.impl.CustomerTypeRepositoryImpl;
 
 import java.util.List;
 
-public class CustomerTypeService {
+public class CustomerTypeServiceImpl implements services.CustomerTypeService {
     private CustomerTypeRepository customerTypeRepo = new CustomerTypeRepositoryImpl();
 
+    @Override
     public List<CustomerType> selectAllCustomerType() {
         return customerTypeRepo.selectAllCustomerType();
     }
-
 }

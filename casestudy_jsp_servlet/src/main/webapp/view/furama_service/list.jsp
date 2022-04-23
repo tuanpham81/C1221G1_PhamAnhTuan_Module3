@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
 <head>
     <title>Furama Service</title>
 </head>
@@ -19,7 +20,7 @@
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
 <body>
-<div  align="center">
+<div align="center">
     <h2>Service Management</h2>
 </div>
 
@@ -47,23 +48,34 @@
                 <td><c:out value="${service.area}"/></td>
                 <td><c:out value="${service.cost}"/></td>
                 <td><c:out value="${service.maxPeople}"/></td>
-                <td><c:out value="${service.rentTypeId}"/></td>
-                <td><c:out value="${service.serviceTypeId}"/></td>
+                <td>
+                    <c:forEach var="rentType" items="${rentTypeList}">
+                        <c:if test="${service.rentTypeId == rentType.rentTypeId}">
+                            ${rentType.rentTypeName}
+                        </c:if>
+                    </c:forEach>
+                </td>
+                <td>
+                    <c:forEach var="serviceType" items="${serviceTypeList}">
+                        <c:if test="${service.serviceTypeId == serviceType.serviceTypeId}">
+                            ${serviceType.serviceTypeName}
+                        </c:if>
+                    </c:forEach>
+                </td>
                 <td><c:out value="${service.standard}"/></td>
                 <td><c:out value="${service.otherConvenient}"/></td>
                 <td><c:out value="${service.poolArea}"/></td>
                 <td><c:out value="${service.floorNumber}"/></td>
-<%--                <td>--%>
-<%--                    <button onclick="deleteServiceModal(${service.serviceId},'${service.name}')" type="button" class="btn btn-danger"--%>
-<%--                            data-toggle="modal" data-target="#exampleModal">--%>
-<%--                        Delete--%>
-<%--                    </button>--%>
-<%--                </td>--%>
+                    <%--                <td>--%>
+                    <%--                    <button onclick="deleteServiceModal(${service.serviceId},'${service.name}')" type="button" class="btn btn-danger"--%>
+                    <%--                            data-toggle="modal" data-target="#exampleModal">--%>
+                    <%--                        Delete--%>
+                    <%--                    </button>--%>
+                    <%--                </td>--%>
             </tr>
         </c:forEach>
     </table>
 </div>
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

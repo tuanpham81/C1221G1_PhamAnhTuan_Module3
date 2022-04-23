@@ -20,8 +20,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d257a92d-e8c7-4760-a610-0bf4e577c6a7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../ss11_mvc/bai_tap/product_manager/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss11_mvc/bai_tap/product_manager/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/controller/FuramaServiceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/controller/FuramaServiceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/model/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/model/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/model/FuramaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/model/FuramaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/repository/CustomerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/repository/CustomerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/repository/impl/CustomerRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/repository/impl/CustomerRepositoryImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/repository/impl/FuramaServiceRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/repository/impl/FuramaServiceRepositoryImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/services/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/services/CustomerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/services/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/services/impl/CustomerServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/classes/java/main/services/impl/CustomerTypeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/libs/casestudy_jsp_servlet-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/build/libs/casestudy_jsp_servlet-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/controller/FuramaServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/controller/FuramaServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/model/FuramaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/model/FuramaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/repository/impl/CustomerRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/repository/impl/CustomerRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/repository/impl/FuramaServiceRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/repository/impl/FuramaServiceRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/services/impl/CustomerTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/java/services/impl/CustomerTypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/customer/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/view/customer/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/customer/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/view/customer/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/customer/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/view/customer/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/furama_service/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/view/furama_service/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/furama_service/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/view/furama_service/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_jsp_servlet/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +190,7 @@
       <workItem from="1650123970958" duration="3912000" />
       <workItem from="1650168413919" duration="11415000" />
       <workItem from="1650246862205" duration="61000" />
+      <workItem from="1650706464537" duration="9000" />
     </task>
     <servers />
   </component>

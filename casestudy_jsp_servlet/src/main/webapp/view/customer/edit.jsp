@@ -82,8 +82,6 @@
             <tr>
                 <th>Customer Type:</th>
                 <td>
-<%--                    <input type="text" name="customerType" size="15"--%>
-<%--                           value="<c:out value='${customer.customerType}'/>"/>--%>
                     <select name="customerType">
                         <c:forEach var="customerType" items="${customerTypeList}">
                             <option value="${customer.customerType}">${customerType.typeName}</option>

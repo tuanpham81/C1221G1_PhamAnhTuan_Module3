@@ -35,10 +35,8 @@
                 <th>Customer Type:</th>
                 <td>
                     <select name="customerType">
-                        <%--                        <c:forEach var="customer" items="${customerType}">--%>
                         <c:forEach var="customerType" items="${customerTypeList}">
                             <option value="${customerType.typeId}">${customerType.typeName}</option>
-                            <%--                            </c:forEach>--%>
                         </c:forEach>
                     </select>
                 </td>

@@ -28,13 +28,13 @@
             <tr>
                 <th>Service ID:</th>
                 <td>
-                    <input type="text" name="serviceId"size="45"/>
+                    <input type="number" name="serviceId" size="45"/>
                 </td>
             </tr>
             <tr>
                 <th>Service Name:</th>
                 <td>
-                    <input type="number" name="name" size="45"/>
+                    <input type="text" name="name" size="45"/>
                 </td>
             </tr>
             <tr>
@@ -46,7 +46,7 @@
             <tr>
                 <th>Service Cost:</th>
                 <td>
-                    <input type="date" name="cost" size="45"/>
+                    <input type="number" name="cost" size="45"/>
                 </td>
             </tr>
             <tr>
@@ -58,31 +58,45 @@
             <tr>
                 <th>Rent Type ID:</th>
                 <td>
-                    <input type="number" name="rentTypeId" size="45"/>
+                    <select name="rentTypeId">
+                        <c:forEach var="rentType" items="${rentTypeList}">
+                            <option value="${rentType.rentTypeId}">${rentType.rentTypeName}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Service Type ID:</th>
+                <td>
+                    <select name="serviceTypeId">
+                        <c:forEach var="serviceType" items="${serviceTypeList}">
+                            <option value="${serviceType.serviceTypeId}">${serviceType.serviceTypeName}</option>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <th>Service Standard:</th>
                 <td>
-                    <input type="text" name="phone" size="15"/>
+                    <input type="text" name="standard" size="15"/>
                 </td>
             </tr>
             <tr>
                 <th>Other Convenient</th>
                 <td>
-                    <input type="text" name="email" size="15"/>
+                    <input type="text" name="otherConvenient" size="15"/>
                 </td>
             </tr>
             <tr>
                 <th>Pool Area:</th>
                 <td>
-                    <input type="text" name="address" size="15"/>
+                    <input type="number" name="poolArea" size="15"/>
                 </td>
             </tr>
             <tr>
                 <th>Number of floors:</th>
                 <td>
-                    <input type="text" name="floorNumber" size="15"/>
+                    <input type="number" name="floorNumber" size="15"/>
                 </td>
             </tr>
             <tr>

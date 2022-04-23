@@ -1,12 +1,14 @@
 package controller;
 
-import model.Customer;
-import model.CustomerType;
 import model.FuramaService;
+import model.RentType;
+import model.ServiceType;
 import services.FuramaServiceService;
-import services.impl.CustomerServiceImpl;
-import services.impl.CustomerTypeService;
+import services.RentTypeService;
+import services.ServiceTypeService;
 import services.impl.FuramaServiceServiceImpl;
+import services.impl.RentTypeServiceImpl;
+import services.impl.ServiceTypeServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,8 +23,12 @@ import java.util.List;
 @WebServlet(name = "FuramaServiceController", urlPatterns = {"/services"})
 public class FuramaServiceController extends HttpServlet {
     private FuramaServiceService serviceService;
+    private RentTypeService rentTypeService;
+    private ServiceTypeService serviceTypeService;
     public void init() {
         serviceService = new FuramaServiceServiceImpl();
+        rentTypeService = new RentTypeServiceImpl();
+        serviceTypeService = new ServiceTypeServiceImpl();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,21 +48,21 @@ public class FuramaServiceController extends HttpServlet {
     }
 
     private void insertService(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        Integer serviceId = Integer.valueOf(request.getParameter("ma_dich_vu"));
-        String name = request.getParameter("ten_dich_vu");
-        Float area = Float.valueOf(request.getParameter("dien_tich"));
-        Float cost = Float.valueOf(request.getParameter("chi_phi_thue"));
-        Integer maxPeople = Integer.parseInt(request.getParameter("so_nguoi_toi_da"));
-        Integer rentTypeId = Integer.parseInt(request.getParameter("ma_kieu_thue"));
-        Integer serviceTypeId = Integer.valueOf(request.getParameter("ma_loai_dich_vu"));
-        String standard = request.getParameter("tieu_chuan_phong");
-        String otherConvenient = request.getParameter("mo_ta_tien_nghi_khac");
-        Float poolArea = Float.valueOf(request.getParameter("dien_tich_ho_boi"));
-        Integer floorNumber = Integer.valueOf(request.getParameter("so_tang"));
+        Integer serviceId = Integer.valueOf(request.getParameter("serviceId"));
+        String name = request.getParameter("name");
+        Integer area = Integer.valueOf(request.getParameter("area"));
+        Double cost = Double.valueOf(request.getParameter("cost"));
+        Integer maxPeople = Integer.parseInt(request.getParameter("maxPeople"));
+        Integer rentTypeId = Integer.parseInt(request.getParameter("rentTypeId"));
+        Integer serviceTypeId = Integer.valueOf(request.getParameter("serviceTypeId"));
+        String standard = request.getParameter("standard");
+        String otherConvenient = request.getParameter("otherConvenient");
+        Double poolArea = Double.valueOf(request.getParameter("poolArea"));
+        Integer floorNumber = Integer.valueOf(request.getParameter("floorNumber"));
 
         FuramaService service = new FuramaService(serviceId, name, area, cost, maxPeople, rentTypeId, serviceTypeId, standard, otherConvenient, poolArea, floorNumber);
         serviceService.insertService(service);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("furama_service/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/furama_service/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -76,14 +82,24 @@ public class FuramaServiceController extends HttpServlet {
     }
 
     private void createServiceForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("furama_service/create.jsp");
+        List<FuramaService> serviceList = serviceService.selectAllService();
+        List<RentType> rentTypeList = rentTypeService.selectAllRentType();
+        List<ServiceType> serviceTypeList = serviceTypeService.selectAllServiceType();
+        request.setAttribute("serviceList", serviceList);
+        request.setAttribute("rentTypeList", rentTypeList);
+        request.setAttribute("serviceTypeList", serviceTypeList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/furama_service/create.jsp");
         dispatcher.forward(request, response);
     }
 
     private void displayAllService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<FuramaService> serviceList = serviceService.selectAllService();
+        List<RentType> rentTypeList = rentTypeService.selectAllRentType();
+        List<ServiceType> serviceTypeList = serviceTypeService.selectAllServiceType();
         request.setAttribute("serviceList", serviceList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("furama_service/list.jsp");
+        request.setAttribute("rentTypeList", rentTypeList);
+        request.setAttribute("serviceTypeList", serviceTypeList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/furama_service/list.jsp");
         dispatcher.forward(request, response);
     }
 }

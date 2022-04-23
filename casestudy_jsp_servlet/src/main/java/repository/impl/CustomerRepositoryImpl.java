@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRepositoryImpl implements CustomerRepository {
-
     private BaseRepository baseRepository = new BaseRepository();
     private static final String SQL_INSERT_CUSTOMER = "insert into khach_hang values " +
             "(?,?,?,?,?,?,?,?,?);";
     private static final String SQL_SELECT_ALL_CUSTOMERS = "select * from khach_hang;";
-    private static final String SQL_DELETE_CUSTOMER = "delete from khach_hang where ma_khach_hang = ?;";
+//    private static final String SQL_DELETE_CUSTOMER = "delete from khach_hang where ma_khach_hang = ?;";
     private static final String SQL_SELECT_CUSTOMER_BY_ID = "select * from khach_hang where ma_khach_hang = ?;";
     private static final String SQL_SEARCH_CUSTOMERS_BY_NAME = "select * from khach_hang where ho_ten like ?;";
     private static final String SQL_UPDATE_CUSTOMER =
@@ -71,7 +70,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         List<Customer> customerList = new ArrayList<>();
         try (Connection connection = baseRepository.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_CUSTOMERS);) {
-            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -108,16 +106,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         }
     }
 
-    @Override
-    public boolean deleteCustomer(String idCustomer) throws SQLException {
-        boolean rowDeleted;
-        try (Connection connection = baseRepository.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_CUSTOMER);) {
-            statement.setString(1, idCustomer);
-            rowDeleted = statement.executeUpdate() > 0;
-        }
-        return rowDeleted;
-    }
+//    @Override
+//    public boolean deleteCustomer(String idCustomer) throws SQLException {
+//        boolean rowDeleted;
+//        try (Connection connection = baseRepository.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_CUSTOMER);) {
+//            statement.setString(1, idCustomer);
+//            rowDeleted = statement.executeUpdate() > 0;
+//        }
+//        return rowDeleted;
+//    }
 
     @Override
     public void deleteCustomerSP(String id) {
