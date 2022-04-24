@@ -16,28 +16,33 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Map<String, String> insertCustomer(Customer customer) throws SQLException {
         Map<String, String> map = new HashMap<>();
-        if (customer.idCardNumber.equals("")) {
-            map.put("cmnd", "CMND không được để trống");
-        } else if (!customer.idCardNumber.matches("^\\d{9}|\\d{12}$")) {
-            map.put("cmnd", "CMND không hợp lệ");
-        }
+//        if (customer.idCardNumber.equals("")) {
+//            map.put("idCardNumber", "Please input ID card number");
+//        } else if (!customer.idCardNumber.matches("^\\d{9}|\\d{12}$")) {
+//            map.put("idCardNumber", "invalid ID card number");
+//        }
 
         if (customer.phoneNumber.equals("")) {
-            map.put("phone", "Số điện thoại không được để trống");
+            map.put("phoneNumber", "Please input phone number");
         } else if (!customer.phoneNumber.matches("^((090)|(091)|([(]84[)][+]90)|([(]84[)][+]91))\\d{7}$")) {
-            map.put("phone", "Số điện thoại không hợp lệ");
+            map.put("phoneNumber", "invalid phone number");
         }
 
-        if (customer.email.equals("")) {
-            map.put("email", "Email không được để trống");
-        } else if (!customer.email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@" +
-                "[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$"))
+//        if (customer.email.equals("")) {
+//            map.put("email", "Please input email");
+//        } else if (!customer.email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@" +
+//                "[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$")){
+//            map.put("email","invalid email format");
+//        }
 
             if (map.isEmpty()) {
                 customerRepo.insertCustomer(customer);
             }
         return map;
     }
+
+//    @Override
+//    public void insertCustomer(Customer customer) throws SQLException {
 //        customerRepo.insertCustomer(customer);
 //    }
 

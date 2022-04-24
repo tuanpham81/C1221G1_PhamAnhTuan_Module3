@@ -10,6 +10,8 @@ import java.util.Map;
 public interface CustomerService {
     Map<String, String> insertCustomer(Customer customer) throws SQLException;
 
+//    void insertCustomer(Customer customer) throws SQLException;
+
     Customer selectCustomer(String id);
 
     List<Customer> selectAllCustomer();

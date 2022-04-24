@@ -66,19 +66,21 @@
                 <th>Customer ID Card:</th>
                 <td>
                     <input type="text" name="idCard" size="45"/>
-                    <p></p>
+                    <p style="color:red;">${error.get("idCardNumber")}</p>
                 </td>
             </tr>
             <tr>
                 <th>Customer Phone Number:</th>
                 <td>
                     <input type="text" name="phone" size="15"/>
+                    <p style="color:red;">${error.get("phoneNumber")}</p>
                 </td>
             </tr>
             <tr>
                 <th>Customer email:</th>
                 <td>
                     <input type="text" name="email" size="15"/>
+                    <p style="color:red;">${error.get("email")}</p>
                 </td>
             </tr>
             <tr>

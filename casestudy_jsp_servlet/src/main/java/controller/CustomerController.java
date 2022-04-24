@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerController", urlPatterns = {"/customers"})
 public class CustomerController extends HttpServlet {
@@ -129,6 +130,22 @@ public class CustomerController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+//    private void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+//        Integer customerId = Integer.valueOf(request.getParameter("customerId"));
+//        Integer customerType = Integer.valueOf(request.getParameter("customerType"));
+//        String name = request.getParameter("name");
+//        String birthday = request.getParameter("birthday");
+//        Integer gender = Integer.parseInt(request.getParameter("gender"));
+//        String idCard = request.getParameter("idCard");
+//        String phone = request.getParameter("phone");
+//        String email = request.getParameter("email");
+//        String address = request.getParameter("address");
+//        Customer customer = new Customer(name, birthday, gender, idCard, phone, email, customerId, customerType, address);
+//        customerService.insertCustomer(customer);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/create.jsp");
+//        dispatcher.forward(request, response);
+//    }
+
     private void insertCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Integer customerId = Integer.valueOf(request.getParameter("customerId"));
         Integer customerType = Integer.valueOf(request.getParameter("customerType"));
@@ -140,9 +157,15 @@ public class CustomerController extends HttpServlet {
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         Customer customer = new Customer(name, birthday, gender, idCard, phone, email, customerId, customerType, address);
-        customerService.insertCustomer(customer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/create.jsp");
-        dispatcher.forward(request, response);
+        Map<String, String> map = customerService.insertCustomer(customer);
+        if(map.isEmpty()) {
+            response.sendRedirect("/customers");
+        } else {
+            List<CustomerType> customerTypeList = customerTypeServiceImpl.selectAllCustomerType();
+            request.setAttribute("customerTypeList", customerTypeList);
+            request.setAttribute("error", map);
+            request.getRequestDispatcher("view/customer/create.jsp").forward(request,response);
+        }
     }
 
     private void searchCustomerByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

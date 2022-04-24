@@ -193,15 +193,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 Integer educationDegree = Integer.valueOf(rs.getString("ma_trinh_do"));
                 Integer divisionId = Integer.valueOf(rs.getString("ma_bo_phan"));
                 employeeList.add(new Employee(employeeId, name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
-
-
 //                -- lỗi nullpointer
 //                while (address.contains(searchAddress) && searchDivisionString.equals(String.valueOf(divisionId))) {
 //                    employeeList.add(new Employee(employeeId, name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
 //                }
 //                --
-
-                employeeList.removeIf(employee -> !employee.getAddress().contains(searchAddress));
+//                employeeList.removeIf(employee -> !employee.getAddress().contains(searchAddress));
+                for (Employee employee: employeeList) {
+                    if(!employee.getAddress().contains(searchAddress)){
+                        employeeList.remove(employee);
+                    }
+                }
                 for (int i = 0; i < employeeList.size(); i++) {
                     if (searchDivision != null) {
                         Integer searchDivisionNumber = Integer.valueOf(searchDivision);

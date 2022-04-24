@@ -91,7 +91,9 @@
                 <td>
                     <select name="position">
                         <c:forEach var="position" items="${positionList}">
-                            <option value="${position.positionId}">${position.positionName}</option>
+                            <option value="${position.positionId}" ${employee.positionId == position.positionId?"selected":""}>
+                                    ${position.positionName}</option>
+
                         </c:forEach>
                     </select>
                 </td>
@@ -101,7 +103,8 @@
                 <td>
                     <select name="educationDegree">
                         <c:forEach var="educationDegree" items="${educationDegreeList}">
-                            <option value="${educationDegree.degreeId}">${educationDegree.degreeName}</option>
+                            <option value="${educationDegree.degreeId}" ${employee.educationDegree == educationDegree.degreeId?"selected":""}>
+                                    ${educationDegree.degreeName}</option>
                         </c:forEach>
                     </select>
                 </td>
@@ -111,7 +114,8 @@
                 <td>
                     <select name="division">
                         <c:forEach var="division" items="${divisionList}">
-                            <option value="${division.divisionId}">${division.divisionName}</option>
+                            <option value="${division.divisionId}" ${employee.divisionId == division.divisionId?"selected":""}>
+                                    ${division.divisionName}</option>
                         </c:forEach>
                     </select>
                 </td>

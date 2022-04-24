@@ -50,8 +50,8 @@
                 <th>Customer Gender:</th>
                 <td>
                     <select name="gender">
-                        <option value="1">Nam</option>
-                        <option value="0">Nữ</option>
+                        <option value="1" ${customer.gender == 1?"selected":""}>Nam</option>
+                        <option value="0" ${customer.gender == 0?"selected":""}>Nữ</option>
                     </select>
                 </td>
             </tr>
@@ -84,7 +84,9 @@
                 <td>
                     <select name="customerType">
                         <c:forEach var="customerType" items="${customerTypeList}">
-                            <option value="${customer.customerType}">${customerType.typeName}</option>
+                            <option value="${customerType.typeId}" ${customer.customerType == customerType.typeId?"selected":""}>
+                                    ${customerType.typeName}
+                            </option>
                         </c:forEach>
                     </select>
                 </td>

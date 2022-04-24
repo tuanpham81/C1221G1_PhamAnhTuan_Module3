@@ -18,9 +18,8 @@
     <h2>Employee Management</h2>
 
     <form method="post" action="/employees?action=search">
-        <label> Search employee by name</label>
-        <input type="text" name="searchName">
-        <button type="submit">Search</button>
+        <input style="height: 36px" placeholder="Search by name" type="text" name="searchName">
+        <button style="margin-bottom: 5px" type="submit" class="btn btn-primary">Search</button>
     </form>
 
     <form method="post" action="/employees?action=search2">
@@ -32,13 +31,14 @@
                 <option value="${division.divisionId}">${division.divisionName}</option>
             </c:forEach>
         </select>
-        <button type="submit">Search</button>
+        <button style="margin-bottom: 5px" class="btn btn-primary" type="submit">Search</button>
     </form>
-
-
 </div>
-<a href="/employees?action=create">Add New Employee</a>
+
 <div class="container">
+
+    <a href="/employees?action=create"><button class="btn btn-primary">Add New Employee</button></a>
+
     <div class="row">
         <div class="col-lg-12">
             <table id="tableEmployee" class="table table-striped table-bordered" style="width:100%">
@@ -90,11 +90,9 @@
                             </c:forEach>
                         </td>
                         <td>
-                            <form method="post">
-                                <button>
-                                    <a href="/employees?action=edit&id=${employee.employeeId}">Edit</a>
-                                </button>
-                            </form>
+                                    <a href="/employees?action=edit&id=${employee.employeeId}">
+                                        <button class="btn btn-info">Edit</button>
+                                    </a>
                         </td>
                         <td>
                             <button onclick="deleteEmployeeModal(${employee.employeeId},'${employee.name}')"
@@ -111,7 +109,6 @@
         </div>
     </div>
 </div>
-
 
 <form action="/employees?action=delete" method="post">
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

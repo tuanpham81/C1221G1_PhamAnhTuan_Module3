@@ -18,16 +18,18 @@
     <h2>Customer Management</h2>
 
     <form method="post" action="/customers?action=search">
-        <label> Search customer by name</label>
-        <input type="text" name="searchName">
-        <button type="submit">Search</button>
+        <input style="height: 36px" placeholder="Search by name" type="text" name="searchName">
+        <button style="margin-bottom: 5px" type="submit" class="btn btn-primary">Search</button>
     </form>
 
 </div>
 
-<a href="/customers?action=create"><button class="btn">Add New Customer</button></a>
-
 <div class="container">
+
+    <a href="/customers?action=create">
+        <button class="btn btn-primary">Add New Customer</button>
+    </a>
+
     <div class="row">
         <div class="col-lg-12">
             <table id="tableCustomer" class="table table-striped table-bordered" style="width:100%">
@@ -49,7 +51,9 @@
                 <tbody>
                 <c:forEach var="customer" items="${customerList}">
                     <tr>
-                        <td><c:out value="${customer.customerId}"/></td>
+                        <td>
+                            <c:out value="${customer.customerId}"/>
+                        </td>
                         <td>
                             <c:forEach var="customerType" items="${customerTypeList}">
                                 <c:if test="${customer.customerType == customerType.typeId}">
@@ -60,27 +64,21 @@
                         <td><c:out value="${customer.name}"/></td>
                         <td><c:out value="${customer.birthDay}"/></td>
                         <td>
-                            <c:choose>
-                                <c:when test="${customer.gender=='1'}">
-                                    Nam
-                                    <br/>
-                                </c:when>
-                                <c:otherwise>
-                                    Nữ
-                                    <br/>
-                                </c:otherwise>
-                            </c:choose>
+                            <c:if test="${customer.gender == 0}">
+                                Nữ
+                            </c:if>
+                            <c:if test="${customer.gender == 1}">
+                                Nam
+                            </c:if>
                         </td>
                         <td><c:out value="${customer.idCardNumber}"/></td>
                         <td><c:out value="${customer.phoneNumber}"/></td>
                         <td><c:out value="${customer.email}"/></td>
                         <td><c:out value="${customer.address}"/></td>
                         <td>
-                            <form method="post">
-                                <button>
-                                    <a href="/customers?action=edit&id=${customer.customerId}">Edit</a>
-                                </button>
-                            </form>
+                            <a href="/customers?action=edit&id=${customer.customerId}">
+                                <button class="btn btn-info"> Edit</button>
+                            </a>
                         </td>
                         <td>
                             <button onclick="deleteCustomerModal(${customer.customerId},'${customer.name}')"
