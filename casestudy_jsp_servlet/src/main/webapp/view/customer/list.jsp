@@ -25,7 +25,7 @@
 
 </div>
 
-<a href="/customers?action=create">Add New Customer</a>
+<a href="/customers?action=create"><button class="btn">Add New Customer</button></a>
 
 <div class="container">
     <div class="row">

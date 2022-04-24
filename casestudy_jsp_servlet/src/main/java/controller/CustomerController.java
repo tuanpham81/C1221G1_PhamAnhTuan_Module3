@@ -27,6 +27,9 @@ public class CustomerController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -52,6 +55,9 @@ public class CustomerController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -70,10 +76,12 @@ public class CustomerController extends HttpServlet {
 
     private void editCustomerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        List<CustomerType> customerTypeList = customerTypeServiceImpl.selectAllCustomerType();
-        String id = request.getParameter("customerId");
+        String id = request.getParameter("id");
         Customer existingCustomer = customerService.selectCustomer(id);
+        List<CustomerType> customerTypeList = customerTypeServiceImpl.selectAllCustomerType();
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/edit.jsp");
         request.setAttribute("customer", existingCustomer);
+        request.setAttribute("customerTypeList", customerTypeList);
 //        request.setAttribute("customerTypeList", customerTypeList);
         dispatcher.forward(request, response);
 

@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import repository.impl.EmployeeRepositoryImpl;
 import services.*;
 import services.impl.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "EmployeeController", urlPatterns = {"/employees"})
 
 public class EmployeeController extends HttpServlet {
+//    EmployeeRepositoryImpl employeeRepository = new EmployeeRepositoryImpl();
     private EmployeeService employeeService;
     private PositionService positionService;
     private EducationDegreeService educationDegreeService;
@@ -30,6 +32,9 @@ public class EmployeeController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -48,6 +53,9 @@ public class EmployeeController extends HttpServlet {
                 case "search":
                     searchEmployeeByName(request, response);
                     break;
+                case "search2":
+                    searchEmployee(request, response);
+                    break;
             }
         }catch(SQLException ex){
             throw new ServletException(ex);
@@ -55,7 +63,11 @@ public class EmployeeController extends HttpServlet {
     }
 
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -122,11 +134,11 @@ public class EmployeeController extends HttpServlet {
     }
 
     private void editEmployeeForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer id = Integer.parseInt(request.getParameter("id"));// ko sửa tên tham số
+        Employee existingEmployee = employeeService.selectEmployee(id);
         List<Position> positionList = positionService.selectAllPosition();
         List<EducationDegree> educationDegreeList = educationDegreeService.selectAllEducationDegree();
         List<Division> divisionList = divisionService.selectAllDivision();
-        Integer id = Integer.parseInt(request.getParameter("employeeId"));
-        Employee existingEmployee = employeeService.selectEmployee(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/employee/edit.jsp");
         request.setAttribute("employee", existingEmployee);
         request.setAttribute("positionList", positionList);
@@ -156,6 +168,21 @@ public class EmployeeController extends HttpServlet {
     private void searchEmployeeByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchName = request.getParameter("searchName");
         List<Employee> employeeList = employeeService.searchEmployeeByName(searchName);
+        List<Position> positionList = positionService.selectAllPosition();
+        List<EducationDegree> educationDegreeList = educationDegreeService.selectAllEducationDegree();
+        List<Division> divisionList = divisionService.selectAllDivision();
+        request.setAttribute("employeeList", employeeList);
+        request.setAttribute("positionList", positionList);
+        request.setAttribute("educationDegreeList", educationDegreeList);
+        request.setAttribute("divisionList", divisionList);
+        request.getRequestDispatcher("view/employee/list.jsp").forward(request, response);
+    }
+
+    private void searchEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String searchName = request.getParameter("searchName");
+        String searchAddress = request.getParameter("searchAddress");
+        String searchDivision = request.getParameter("searchDivision") ;
+        List<Employee> employeeList = employeeService.searchEmployee(searchName,searchAddress,searchDivision);
         List<Position> positionList = positionService.selectAllPosition();
         List<EducationDegree> educationDegreeList = educationDegreeService.selectAllEducationDegree();
         List<Division> divisionList = divisionService.selectAllDivision();

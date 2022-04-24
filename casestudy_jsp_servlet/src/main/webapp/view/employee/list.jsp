@@ -23,10 +23,21 @@
         <button type="submit">Search</button>
     </form>
 
+    <form method="post" action="/employees?action=search2">
+        <input type="text" placeholder="Name" name="searchName">
+        <input type="text" placeholder="Address" name="searchAddress">
+        <select name="searchDivision">
+            <option value="" disabled selected>-select division-</option>
+            <c:forEach var="division" items="${divisionList}">
+                <option value="${division.divisionId}">${division.divisionName}</option>
+            </c:forEach>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+
 </div>
-
 <a href="/employees?action=create">Add New Employee</a>
-
 <div class="container">
     <div class="row">
         <div class="col-lg-12">

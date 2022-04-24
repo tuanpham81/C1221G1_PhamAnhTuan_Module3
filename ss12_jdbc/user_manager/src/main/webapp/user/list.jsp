@@ -27,17 +27,9 @@
         </form>
         <br>
 <%--        <form action="/users?action=create" method="post">--%>
-<%--            <button type="submit" >Add new user</button>--%>
-<%--            <br>--%>
+<%--            <button class="btn-secondary" type="submit">Add new user</button>--%>
 <%--        </form>--%>
-<%--        <br>--%>
-<%--        <form action="/users?action=sortbyname" method="post">--%>
-<%--            <button type="submit" >Sort by name</button>--%>
-<%--        </form>--%>
-<%--        <br>--%>
-        <form action="/users?action=create" method="post">
-            <button class="btn-secondary" type="submit">Add new user</button>
-        </form>
+        <a href="/user?action=create">Add new user</a>
         &nbsp;
         <form action="/users?action=sortbyname" method="post">
             <button class="btn-secondary" type="submit">Sort by name</button>

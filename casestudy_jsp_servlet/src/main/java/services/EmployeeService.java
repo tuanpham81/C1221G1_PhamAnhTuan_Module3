@@ -18,4 +18,6 @@ public interface EmployeeService {
     void deleteEmployeeSP(int id) throws SQLException;
 
     List<Employee> searchEmployeeByName(String searchName);
+
+    List<Employee> searchEmployee(String searchName, String searchAddress, String searchDivision); //search theo nhiều thuộc tính
 }

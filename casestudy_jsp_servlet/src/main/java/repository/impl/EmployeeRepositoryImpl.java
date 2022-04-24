@@ -1,6 +1,5 @@
 package repository.impl;
 
-import model.Customer;
 import model.Employee;
 import repository.EmployeeRepository;
 
@@ -10,13 +9,13 @@ import java.util.List;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
-
     private BaseRepository baseRepository = new BaseRepository();
+
     private static final String INSERT_EMPLOYEE = "insert into nhan_vien values(?,?,?,?,?,?,?,?,?,?,?)";
     private static final String SELECT_EMPLOYEE_BY_ID = "select * from nhan_vien where ma_nhan_vien=?";
     private static final String SELECT_ALL_EMPLOYEE = "select * from nhan_vien";
     private static final String UPDATE_EMPLOYEE = "update nhan_vien set ho_ten=?, ngay_sinh=?,so_cmnd=?,luong=?," +
-            "so_dien_thoai=?,email=?,dia_chi=?,ma_vi_tri=?,ma_trinh_do=?,ma_bo_phan=?" +
+            "so_dien_thoai=?,email=?,dia_chi=?,ma_vi_tri=?,ma_trinh_do=?,ma_bo_phan=? " +
             "where ma_nhan_vien=?;";
     private static final String SEARCH_EMPLOYEE_BY_NAME = "select * from nhan_vien where ho_ten like ?;";
 
@@ -77,7 +76,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 Integer positionId = Integer.valueOf(rs.getString("ma_vi_tri"));
                 Integer educationDegree = Integer.valueOf(rs.getString("ma_trinh_do"));
                 Integer divisionId = Integer.valueOf(rs.getString("ma_bo_phan"));
-                employee = new Employee(employeeId,name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId);
+                employee = new Employee(employeeId, name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -103,7 +102,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 Integer positionId = Integer.valueOf(rs.getString("ma_vi_tri"));
                 Integer educationDegree = Integer.valueOf(rs.getString("ma_trinh_do"));
                 Integer divisionId = Integer.valueOf(rs.getString("ma_bo_phan"));
-                employeeList.add(new Employee(employeeId,name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
+                employeeList.add(new Employee(employeeId, name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -137,14 +136,13 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             statement.setString(7, employee.getAddress());
             statement.setInt(8, employee.getPositionId());
             statement.setInt(9, employee.getEducationDegree());
-            statement.setInt(9, employee.getDivisionId());
-            statement.setInt(9, employee.getEmployeeId());
+            statement.setInt(10, employee.getDivisionId());
+            statement.setInt(11, employee.getEmployeeId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
     }
-
 
 
     @Override
@@ -166,7 +164,52 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 Integer positionId = Integer.valueOf(rs.getString("ma_vi_tri"));
                 Integer educationDegree = Integer.valueOf(rs.getString("ma_trinh_do"));
                 Integer divisionId = Integer.valueOf(rs.getString("ma_bo_phan"));
-                employeeList.add(new Employee(employeeId,name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
+                employeeList.add(new Employee(employeeId, name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return employeeList;
+    }
+
+    @Override
+    public List<Employee> searchEmployee(String searchName, String searchAddress, String searchDivision) {
+        List<Employee> employeeList = new ArrayList<>();
+
+        try (Connection connection = baseRepository.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_EMPLOYEE_BY_NAME);) {
+            preparedStatement.setString(1, '%' + searchName + '%');
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Integer employeeId = rs.getInt("ma_nhan_vien");
+                String name = rs.getString("ho_ten");
+                String birthday = rs.getString("ngay_sinh");
+                String idCardNumber = rs.getString("so_cmnd");
+                Double salary = Double.valueOf(rs.getString("luong"));
+                String phone = rs.getString("so_dien_thoai");
+                String email = rs.getString("email");
+                String address = rs.getString("dia_chi");
+                Integer positionId = Integer.valueOf(rs.getString("ma_vi_tri"));
+                Integer educationDegree = Integer.valueOf(rs.getString("ma_trinh_do"));
+                Integer divisionId = Integer.valueOf(rs.getString("ma_bo_phan"));
+                employeeList.add(new Employee(employeeId, name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
+
+
+//                -- lỗi nullpointer
+//                while (address.contains(searchAddress) && searchDivisionString.equals(String.valueOf(divisionId))) {
+//                    employeeList.add(new Employee(employeeId, name, birthday, idCardNumber, salary, phone, email, address, positionId, educationDegree, divisionId));
+//                }
+//                --
+
+                employeeList.removeIf(employee -> !employee.getAddress().contains(searchAddress));
+                for (int i = 0; i < employeeList.size(); i++) {
+                    if (searchDivision != null) {
+                        Integer searchDivisionNumber = Integer.valueOf(searchDivision);
+                        if (!employeeList.get(i).getDivisionId().equals(searchDivisionNumber)) {
+                            employeeList.remove(i);
+                        }
+                    }
+                }
             }
         } catch (SQLException e) {
             printSQLException(e);

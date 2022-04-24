@@ -135,8 +135,8 @@ public class UserController extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
-//        userService.insertUser(newUser);
-        userService.insertUserStore(newUser); // sử dụng stored procedure
+        userService.insertUser(newUser);
+//        userService.insertUserStore(newUser); // sử dụng stored procedure
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
         dispatcher.forward(request, response);
     }

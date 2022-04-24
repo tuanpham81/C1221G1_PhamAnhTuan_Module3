@@ -41,4 +41,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> searchEmployeeByName(String searchName) {
         return employeeRepo.searchEmployeeByName(searchName);
     }
+
+    @Override
+    public List<Employee> searchEmployee(String searchName, String searchAddress, String searchDivision) {
+        return employeeRepo.searchEmployee(searchName,searchAddress,searchDivision);
+    }
 }
